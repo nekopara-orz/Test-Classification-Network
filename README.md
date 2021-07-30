@@ -1,1 +1,3 @@
 # Test-Classification-Network
+这个是我用来测试不同分类网络的代码
+数据集使用的是kagggle猫狗分类数据集
