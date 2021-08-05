@@ -32,7 +32,7 @@ if __name__ == '__main__':
     ts = torch.tensor([x * x for x in inputs])
     targets = torch.unsqueeze(ts, 1)
 
-    flops, params = profile(net, (inputs,))
+    flops, params = profile(net, (torch.tensor([[1.0]]),))
     print("flops = {0}, params = {1}".format(flops, params))
 
     for i in range(1000):

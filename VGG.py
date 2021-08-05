@@ -229,7 +229,7 @@ if __name__ == '__main__':
     # net19 = vgg19()
     # p16 = Utils.count_param(net16)
     # p19 = Utils.count_param(net19)
-    # ins = torch.randn([1, 3, 244, 244], dtype=torch.float32)
+    # ins = torch.randn([1, 3, 224, 224], dtype=torch.float32)
     # print(ins)
     # flops16, param16 = Utils.count_flops_param(net16, ins)
     # flops19, param19 = Utils.count_flops_param(net19, ins)

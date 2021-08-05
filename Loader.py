@@ -10,17 +10,17 @@ import matplotlib.pyplot as plt
 import torch.optim as optim
 
 train_path = '../kaggle/train'
-
 test_path = '../kaggle/test'
 
+
 class MyDataset(Dataset):
-    def __init__(self, data_path:str, train=True, transform=None):
+    def __init__(self, data_path:str, train=True, transform=None, size=(224, 224)):
         self.data_path = data_path
         self.train_flag = train
         if transform is None:
             self.transform = transforms.Compose(
             [
-                transforms.Resize(size = (224,224)),#尺寸规范
+                transforms.Resize(size=size),#尺寸规范
                 transforms.ToTensor(),   #转化为tensor
                 transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
             ])
@@ -47,6 +47,15 @@ class MyDataset(Dataset):
     def __len__(self) -> int:
         return len(self.path_list)
 
+
+def load(size=(224, 224)):
+    train_ds = MyDataset(train_path, size=size)
+    test_ds = MyDataset(test_path, size=size)
+    train_loader = torch.utils.data.DataLoader(train_ds, batch_size=32,
+                                               shuffle=True, pin_memory=True, num_workers=0)
+    test_loader = torch.utils.data.DataLoader(test_ds, batch_size=32,
+                                              shuffle=True, pin_memory=True, num_workers=0)
+    return train_loader, test_loader
 # train_ds = MyDataset(train_path)
 # test_ds = MyDataset(test_path,train=False)
 # for i, item in enumerate(tqdm(train_ds)):
