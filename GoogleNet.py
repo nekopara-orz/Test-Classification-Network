@@ -250,9 +250,12 @@ if __name__ == '__main__':
     ins = torch.randn([1, 3, 224, 224], dtype=torch.float32)
     flopsv1, paramv1 = Utils.count_flops_param(v1_net, ins)
     flopsv2, paramv2 = Utils.count_flops_param(v2_net, ins)
+    #
+    print("v1 flops= {0},v1 param = {1} ".format(flopsv1, paramv1))
+    print("v2 flops= {0},v2 param = {1} ".format(flopsv2, paramv2))
+    # v1_test()
+    # v2_test()
 
-    print("vggv1 flops= {0},vggv1 param = {1} ".format(flopsv1, paramv1))
-    print("vggv2 flops= {0},vggv2 param = {1} ".format(flopsv2, paramv2))
 # def test():
 #     net = inception_v1()
 #     # net = inception_v2()
