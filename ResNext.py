@@ -4,6 +4,9 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torchsummary import summary
 
+import Utils
+
+
 class BN_Conv2d(nn.Module):
     """
     BN_CONV, default activation is ReLU
@@ -207,9 +210,17 @@ def test():
     # net = ResNet_50()
 
     summary(net, (3, 224, 224))
+    ins = torch.randn([1, 3, 224, 224], dtype=torch.float32)
+    flops_res, param_res = Utils.count_flops_param(net, ins)
+    #
+    print("ResNeXt flops= {0},v1 param = {1} ".format(flops_res, param_res))
+
     # net = torchvision.models.resnet34(pretrained=False)
     # print(net)
     # summary(net, (3, 224, 224))
 
+
 if __name__ == '__main__':
     test()
+    # net = ResNet_18(2)
+    # Utils.test_model(epoch=20, model=net, size=(224, 224))

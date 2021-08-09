@@ -221,7 +221,6 @@ def vgg19test(epoch=20):
             print('time :', (end - start).total_seconds())
 
 
-
 if __name__ == '__main__':
     # 'VGG', 'vgg11', 'vgg11_bn', 'vgg13', 'vgg13_bn', 'vgg16', 'vgg16_bn', 'vgg19_bn', 'vgg19'
     # Example
