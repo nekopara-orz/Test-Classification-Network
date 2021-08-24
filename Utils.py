@@ -64,3 +64,21 @@ def test_model(epoch=20, model=None, size=(224, 224)):
 
             end = datetime.datetime.now()
             print('time :', (end - start).total_seconds())
+
+
+def to_onnx(model):
+    # load model
+    net = model()
+    ckpt = torch.load("mobilenetv1.pth", map_location='cpu')
+    # print(ckpt)
+    net.load_state_dict(ckpt)
+    net.eval()
+
+    # 转onnx
+    dummy_input = torch.randn(1, 3, 224, 224)
+    net(dummy_input)
+
+
+    input_names = ["input"]
+    output_names = ['output']
+    torch.onnx.export(net, dummy_input, 'mobilenet.onnx', verbose=True, input_names=input_names, output_names=output_names)

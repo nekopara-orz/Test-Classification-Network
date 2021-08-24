@@ -114,3 +114,4 @@ class MobileNetV2(nn.Module):
         x = torch.flatten(x, 1)
         x = self.classifier(x)
         return x
+
