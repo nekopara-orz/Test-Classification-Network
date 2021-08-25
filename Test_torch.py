@@ -4,7 +4,7 @@ from torch.utils import data  # 获取迭代数据
 from torch.autograd import Variable  # 获取变量
 from thop import profile
 
-PATH = 'model1.pth'
+PATH = 'pth/model1.pth'
 
 
 class MyCnn(torch.nn.Module):
